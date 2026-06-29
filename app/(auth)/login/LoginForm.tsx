@@ -1,17 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+
+import { login } from "@/app/actions/auth/login";
 
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
-import { signIn } from "@/services/auth/signIn";
 
 import styles from "./LoginForm.module.css";
 
 export default function LoginForm() {
-  const router = useRouter();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -23,16 +21,18 @@ export default function LoginForm() {
     setLoading(true);
 
     try {
-      await signIn({
+      await login({
         email,
         password,
       });
-
-      router.push("/dashboard");
-      router.refresh();
     } catch (error) {
       console.error(error);
-      alert("Login failed.");
+
+      if (error instanceof Error) {
+        alert(error.message);
+      } else {
+        alert("Login failed.");
+      }
     } finally {
       setLoading(false);
     }
