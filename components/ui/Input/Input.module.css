@@ -1,0 +1,21 @@
+.field {
+  display: grid;
+  gap: 8px;
+  font-weight: 600;
+  color: #020617;
+}
+
+.input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  font-size: 16px;
+  color: #020617;
+  background: #ffffff;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #020617;
+}

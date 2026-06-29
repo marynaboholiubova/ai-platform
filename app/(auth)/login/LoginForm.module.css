@@ -1,0 +1,6 @@
+.form {
+  width: 100%;
+  max-width: 420px;
+  display: grid;
+  gap: 18px;
+}
