@@ -27,10 +27,18 @@ export async function createCompany(data: CreateCompanyData) {
     error: userError,
   } = await supabase.auth.getUser();
 
-  console.log("USER:", user);
-
   if (userError || !user) {
     throw new Error("User not authenticated.");
+  }
+
+  const { data: existingCompanyUser } = await supabase
+    .from("company_users")
+    .select("company_id")
+    .eq("user_id", user.id)
+    .maybeSingle();
+
+  if (existingCompanyUser) {
+    return existingCompanyUser;
   }
 
   const { data: company, error } = await supabase

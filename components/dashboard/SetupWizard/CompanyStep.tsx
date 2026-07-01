@@ -68,10 +68,20 @@ export default function CompanyStep({ onComplete }: CompanyStepProps) {
       <label>
         Default language
         <select value={language} onChange={(event) => setLanguage(event.target.value)}>
-          <option value="nl">🇳🇱 Nederlands</option>
-          <option value="en">🇬🇧 English</option>
-          <option value="fr">🇫🇷 Français</option>
-          <option value="de">🇩🇪 Deutsch</option>
+     <option value="nl">🇳🇱 Nederlands</option>
+  <option value="en">🇬🇧 English</option>
+  <option value="fr">🇫🇷 Français</option>
+  <option value="de">🇩🇪 Deutsch</option>
+  <option value="uk">🇺🇦 Українська</option>
+  <option value="it">🇮🇹 Italiano</option>
+  <option value="es">🇪🇸 Español</option>
+  <option value="pt">🇵🇹 Português</option>
+  <option value="sv">🇸🇪 Svenska</option>
+  <option value="ro">🇷🇴 Română</option>
+  <option value="cs">🇨🇿 Čeština</option>
+  <option value="pl">🇵🇱 Polski</option>
+  <option value="tr">🇹🇷 Türkçe</option>
+  <option value="ru">🇷🇺 Русский</option>
         </select>
       </label>
 

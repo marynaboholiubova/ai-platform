@@ -1,0 +1,23 @@
+.header {
+  height: 88px;
+  padding: 0 32px;
+  border-bottom: 1px solid #e2e8f0;
+  background: #ffffff;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.label {
+  margin: 0 0 4px;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.title {
+  margin: 0;
+  color: #0f172a;
+  font-size: 24px;
+  font-weight: 700;
+}
