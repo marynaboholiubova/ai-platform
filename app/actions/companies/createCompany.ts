@@ -1,4 +1,6 @@
-import { createClient } from "@/lib/supabase/client";
+"use server";
+
+import { createClient } from "@/lib/supabase/server";
 
 type CreateCompanyData = {
   name: string;
@@ -18,24 +20,24 @@ function generateSlug(name: string) {
 }
 
 export async function createCompany(data: CreateCompanyData) {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const {
     data: { user },
     error: userError,
   } = await supabase.auth.getUser();
 
+  console.log("USER:", user);
+
   if (userError || !user) {
     throw new Error("User not authenticated.");
   }
-
-  const slug = generateSlug(data.name);
 
   const { data: company, error } = await supabase
     .from("companies")
     .insert({
       name: data.name,
-      slug,
+      slug: generateSlug(data.name),
       website: data.website,
       industry: data.industry,
       language: data.language,
@@ -43,8 +45,8 @@ export async function createCompany(data: CreateCompanyData) {
     .select()
     .single();
 
-  if (error) {
-    throw new Error(error.message);
+  if (error || !company) {
+    throw new Error(error?.message || "Company was not created.");
   }
 
   const { error: companyUserError } = await supabase

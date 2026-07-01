@@ -1,6 +1,5 @@
 "use server";
 
-import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 
 type LoginData = {
@@ -20,5 +19,5 @@ export async function login({ email, password }: LoginData) {
     throw new Error(error.message);
   }
 
-  redirect("/dashboard");
+  return { success: true };
 }

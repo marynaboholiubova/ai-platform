@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 import { login } from "@/app/actions/auth/login";
 
@@ -10,6 +11,8 @@ import Input from "@/components/ui/Input";
 import styles from "./LoginForm.module.css";
 
 export default function LoginForm() {
+  const router = useRouter();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -25,6 +28,9 @@ export default function LoginForm() {
         email,
         password,
       });
+
+      router.replace("/dashboard");
+      router.refresh();
     } catch (error) {
       console.error(error);
 
